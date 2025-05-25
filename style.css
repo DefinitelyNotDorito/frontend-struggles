@@ -1,0 +1,125 @@
+:root{
+    --main-background: rgb(46, 46, 46);
+    --content-box-background: rgb(59, 59, 59);
+    --content-box-background-light: rgb(94, 94, 94);
+    
+    --content-box-shadow: rgba(22, 22, 22, 0.493) 3px 3px 6px;
+    --content-box-shadow-light: rgba(37, 37, 37, 0.534) 3px 3px 6px;
+}
+
+
+*{
+    box-sizing: border-box;
+}
+
+
+html, body{
+    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: max-content auto;
+    background-color: var(--main-background);
+}
+
+.game-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 1vw;
+    margin: 0 8vw;
+    margin-top: 1em;
+    border-radius: 0.5em;
+    grid-column: span 3;
+    background-color: var(--content-box-background);
+    box-shadow: var(--content-box-shadow);
+}
+.header-item{
+    display: flex;
+    align-items: center;
+    background-color: var(--content-box-background-light);
+    padding: 0.3em 1em;
+    border-radius: 0.5em;
+    height: 100%;
+    box-shadow: var(--content-box-shadow-light);
+    color: antiquewhite;
+}
+.currency-counter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3em 0.4em;
+    gap: 0.3em;
+}
+
+#dollar-icon{
+    color: rgba(100, 32, 32, 0.651);
+    background-color: #f05454;
+    box-shadow: 0 0 4px -1px rgb(122, 23, 23) inset;
+    padding: 0.2em 0.4em;
+    border-radius: 1em;
+}
+
+#money-count{
+    font-size: 1.2em;
+}
+
+#player-icon{
+    color: rgba(105, 255, 46, 0.911);
+    
+}
+
+.game-grid{
+    margin: 5vh 0;
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.game-area{
+    background-color: var(--content-box-background);
+    box-shadow: var(--content-box-shadow);
+    padding: 0.3em 1em;
+    border-radius: 0.5em;
+    margin: 0 0.4vw;
+}
+
+.game-area-left{
+    grid-column: 1;
+    grid-row: span 2;
+}
+
+.game-area-right{
+    grid-column: 3;
+    grid-row: span 2;
+}
+
+.game-area-middle-top, .game-area-middle-bottom{
+    grid-column: 2;
+}
+.game-area-middle-bottom{
+    margin-top: 0.6em;
+    grid-row: 2;
+}
+.game-area-middle-top{
+    grid-row: 1; 
+}
+
+#xxx{
+    position: absolute;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    left: 0.3vw;
+    transition-duration: 1s;
+
+}
+#xxx:hover{
+        color: rgba(255, 255, 255, 0.315);
+    }
