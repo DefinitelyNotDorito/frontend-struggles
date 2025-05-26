@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/game.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+    <title>RPG</title>
+</head>
+<body>
+    <a href="index.html" id="xxx">x</a>
+    <div class="begin">
+        <div class="begin-container">
+            <div class="begin-box" id="bb1">
+                <h1>Welcome!</h1>
+                <h2>Before we begin, i must ask a few questions...</h2>
+                <div class="btn-and-counter">
+                    <button class="begin-button" >Let's begin!</button>
+                    <p class="box-counter">1 / 3</p>
+                </div>
+
+            </div>
+            <div class="begin-box hidden">
+                <h3>First things first:</h3>
+                <p>what is your name?</p>
+                <input type="text" id="username-input" onkeyup="userCheck()" placeholder="dont be shy..." 
+                class="begin-text-input"
+                required minlength="3"
+                maxlength="14"
+                >
+                <div class="btn-and-counter">
+                    <button class="begin-button" disabled>Continue</button>
+                    <p class="box-counter">2 / 3</p>
+                </div>
+            </div>
+            <div class="begin-box hidden">
+                <h1>hey hey hey hey!</h1>
+                <h2>I will write something cool here!</h2>
+                <div class="btn-and-counter">
+                    <p class="begin-button">Start!</p>
+                    <p class="box-counter">3 / 3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="game-header">
+            <div class="player-info header-item">
+                <span id="player-name"></span>
+                <i class="fa-solid fa-person-hiking" id="player-icon"></i>
+            </div>
+            <div class="level-counter header-item"></div>
+            <div class="currency-counter header-item">
+                <span id="money-count">0</span>
+                <i class="fa-solid fa-dollar" id="dollar-icon"></i>
+            </div>
+        </div>
+        <div class="game-grid">
+            <div class="game-area game-area-left">
+                <label>-</label>
+
+            </div>
+            <div class="game-area game-area-middle-top"></div>
+            <div class="game-area game-area-middle-bottom"></div>
+            <div class="game-area game-area-right"></div>
+        </div>
+    </main>
+    <script src="scripts/game.js"></script>
+</body>
+</html>
