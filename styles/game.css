@@ -1,159 +1,149 @@
-:root{
+:root {
     --main-background: rgb(24, 24, 24);
     --content-box-background: rgb(34, 34, 34);
     --content-box-background-light: rgb(53, 53, 53);
-    
     --content-box-shadow: rgba(22, 22, 22, 0.493) 3px 3px 6px;
     --content-box-shadow-light: rgba(37, 37, 37, 0.534) 3px 3px 6px;
 }
 
 @keyframes fader {
-    0% {opacity: 1;}
-    100% {opacity: 0;}
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
-*{
+* {
     box-sizing: border-box;
-    transition-duration: 0.2s;
+    transition: 0.2s;
 }
 
-.begin{
-    z-index: 1;
+.begin {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    inset: 0;
     background-color: #0000009c;
+    z-index: 1;
 }
 
-.begin-container{
+.begin-container {
     position: absolute;
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
 }
-.begin-box{
+
+.begin-box {
     color: rgb(228, 228, 228);
     padding: 1em;
     border-radius: 0.3em;
     background-color: var(--content-box-background);
     animation: fader 0.5s reverse;
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     max-width: 24em;
     align-items: start;
-    h3{
-        margin: 0;
-        user-select: none;
-
-    }
-    h1, h2{
-        margin: 0.8rem 0;
-        user-select: none;
-    }
-    p, button{
-        margin: 0.8em 0;
-        user-select: none;
-    }
 }
 
-.btn-and-counter{
+.begin-box h1,
+.begin-box h2 {
+    margin: 0.8rem 0;
+    user-select: none;
+}
+
+.begin-box h3,
+.begin-box button {
+    margin: 0.8em 0;
+    user-select: none;
+}
+
+.begin-box h3 {
+    margin: 0;
+}
+
+.btn-and-counter {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
 }
 
-.hidden{
-    display: none;
-}
-.fade-out{
-    transition-duration: 0.3s;
-    opacity: 0;    
-}
-
-.begin-button{
+.begin-button {
     cursor: pointer;
     text-align: center;
     padding: 0.4em 0.7em;
     font-size: 0.9em;
     border-radius: 0.3em;
     background-color: rgb(16, 121, 170);
-    display: inline-block;
-    color: rgb(255, 255, 255);
-    transition-duration: 0.4s;
+    color: white;
+    transition: 0.4s;
     box-shadow: var(--content-box-shadow) -2px;
     user-select: none;
     border: none;
 }
-.box-counter{
-    display: inline-block;
+
+.begin-button:hover {
+    color: black;
+    background-color: #fff;
+}
+
+.begin-button:disabled {
+    cursor: not-allowed;
+    background-color: #ff5151;
+}
+
+.begin-button:disabled:hover {
+    color: #ff5151;
+    background-color: #fff;
+}
+
+.box-counter {
     margin-right: 5%;
     padding-top: 0.6em;
     font-size: 0.75em;
     color: rgb(133, 133, 133);
 }
-.begin-button:hover{
-    color: black;
-    background-color: #fff;
-}
-.begin-button:disabled{
-    cursor: not-allowed;
-    background-color: #ff5151;
-}
-.begin-button:disabled:hover{
-    color: #ff5151;
-    background-color: #fff;
-}
 
-.begin-text-input{
+.begin-text-input {
     border: none;
     border-radius: 0.3em;
     background-color: #ffffff23;
     box-shadow: var(--content-box-shadow) -2px;
     color: white;
+    margin-top: 0.8em;
     padding: 0.4em;
     outline: none;
 }
 
-.begin-text-input:invalid{
-    outline: 3px solid orange;
-}
-.begin-text-input:valid{
-    outline: 3px solid greenyellow;
-}
+.begin-text-input:invalid { outline: 3px solid orange; }
+.begin-text-input:valid { outline: 3px solid greenyellow; }
 
-
-html, body{
-    min-height: 100vh;
+html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-main{
+main {
     height: 100%;
     display: grid;
-    grid-template-columns: 10% auto 10%;
-    grid-template-rows: max-content auto;
+    grid-template: max-content auto / 10% auto 10%;
     background-color: var(--main-background);
 }
 
-.game-header{
+.game-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5em 1vw;
-    margin: 0 8vw;
-    margin-top: 1em;
+    margin: 1em 8vw 0;
     border-radius: 0.5em;
-    grid-column: span 3;
+    grid-column: 1 / -1;
     background-color: var(--content-box-background);
     box-shadow: var(--content-box-shadow);
     opacity: 0;
-    transition-duration: 0.5s;
+    transition: 0.5s;
 }
-.header-item{
+
+.header-item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,18 +152,18 @@ main{
     border-radius: 0.5rem;
     height: 100%;
     box-shadow: var(--content-box-shadow-light);
-    color: rgb(255, 255, 255);
+    color: white;
 }
-.currency-counter{
+
+.currency-counter {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.3em 0.4em;
     gap: 0.3em;
-
 }
 
-#dollar-icon{
+#dollar-icon {
     color: rgba(73, 64, 22, 0.651);
     background-color: #f0c654;
     box-shadow: 0 0 4px -1px rgb(122, 104, 23) inset;
@@ -181,33 +171,32 @@ main{
     border-radius: 1rem;
 }
 
-#money-count{
+#money-count,
+#player-name {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.2em;
 }
 
-#player-name{
-    font-size: 1.2em;
+#player-name {
     padding-bottom: 0.1em;
-    font-family: 'Times New Roman', Times, serif;
     font-style: italic;
 }
 
-.game-grid{
+.game-grid-outside {
     margin: 5vh 0;
     grid-column: 2;
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
 
-.game-area{
+.game-areas {
     background-color: var(--content-box-background);
     box-shadow: var(--content-box-shadow);
     border-radius: 0.5rem;
     margin: 0 0.8vw;
 }
 
-.game-area-right{
+.game-area-right {
     position: relative;
     display: grid;
     grid-template-rows: max-content auto;
@@ -215,7 +204,7 @@ main{
     padding: 0;
 }
 
-.game-sidebar{
+.sidebar {
     width: 100%;
     display: flex;
     align-items: end;
@@ -224,74 +213,131 @@ main{
     border-radius: 0.5rem;
 }
 
-.sidebar-button{
-
+.sidebar-button {
     height: fit-content;
     max-width: 15%;
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: left;
     position: relative;
-
     padding: 0.5em;
     margin: 0;
-
     font-size: 1.3em;
+    cursor: pointer;
     text-align: center;
-
-    transition-duration: 0.5s;
+    transition: 0.5s;
     border-radius: 10em 0 0 10em;
-
 }
 
-.sidebar-label{
+.sidebar-button:hover { max-width: 75%; }
+
+.sidebar-label {
     opacity: 1;
-    transition-duration: 0.3s;
-    transition-delay: 0.1s;
+    transition: 0.3s 0.1s;
     width: 100%;
+    user-select: none;
 }
 
 .hidden-sidebar-label{
     opacity: 0;
-    transition-duration: 0.2s;
-    transition-delay: 0s;
+    transition: 0.2s;
     transform: scale(0%);
 }
 
-#b-inv{
+#b-inv {
     color: #ffc3c3;
     background-color: #741b1b;
     border-radius: 10rem 4.4rem 0 10rem;
 }
-#b-adv{
+
+#b-adv {
     color: rgb(214, 255, 190);
     background-color: #5a7550;
-
 }
-#b-shop{
+
+#b-shop {
     color: rgb(183, 247, 255);
     background-color: #285253;
 }
-#b-stat{
+
+#b-stat {
     color: rgb(255, 241, 160);
     background-color: #554d2a;
     border-radius: 10rem 0 4.4rem 10rem;
 }
-#b-inv:hover, #b-adv:hover, #b-shop:hover, #b-stat:hover{
-    max-width: 75%;
+
+.game-area-middle {
+    overflow: hidden;
+    min-height: 100%;
 }
 
-#xxx{
+.game-tab {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+.selected-tab {
+    animation: fader 0.3s reverse;
+}
+
+#inv {
+    background-color: rgb(66, 19, 19);
+    --primary-color:  rgb(255, 65, 65);
+    --primary-text: rgb(255, 255, 255);
+}
+#adv { 
+    background-color: rgb(46, 63, 46); 
+    --primary-color:   #73b819;
+    --primary-text: rgb(255, 255, 255);
+
+}
+#shop { 
+    background-color: rgb(28, 54, 61); 
+    --primary-color:  #00a3c0;
+    --primary-text: rgb(255, 255, 255);
+
+}
+#stat { 
+    background-color: rgb(66, 64, 50); 
+    --primary-color:  #dab927;
+    --primary-text: rgb(255, 255, 255);
+
+}
+
+.tab-button{
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    width: max-content;
+    height: max-content;
+    padding: 0.3em;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--primary-text);
+    font-size: 2em;
+}
+.tab-button:hover{
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+
+#xxx {
     position: absolute;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.08);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     left: 0.3vw;
-    transition-duration: 1s;
-
+    transition: 1s;
 }
-#xxx:hover{
-        color: rgba(255, 255, 255, 0.315);
-    }
+
+#xxx:hover { color: rgba(255, 255, 255, 0.315); }
+
+.hidden { display: none; }
+.fade-out { 
+    transition: 0.3s;
+    opacity: 0; 
+}

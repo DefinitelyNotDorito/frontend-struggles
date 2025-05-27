@@ -1,11 +1,11 @@
-:root{
+:root {
     --back: rgb(30, 30, 30);
-    --grid: rgb(50,50,50);
+    --grid: rgb(50, 50, 50);
     --light: rgb(255, 221, 146);
     --primary: rgb(255, 213, 73);
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
