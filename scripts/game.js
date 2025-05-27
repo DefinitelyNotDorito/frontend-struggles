@@ -49,3 +49,15 @@ function userCheck(){
         b_buttons[bb_counter].disabled = true
     }
 }
+
+let sidebar_buttons = document.querySelectorAll(".sidebar-button")
+
+sidebar_buttons.forEach(sidebar_button => {
+    sidebar_button.addEventListener("mouseover", () => {
+        sidebar_button.querySelector("span").classList.remove("hidden-sidebar-label")
+    })
+    sidebar_button.addEventListener("mouseout", () => {
+        sidebar_button.querySelector("span").classList.add("hidden-sidebar-label")
+    })
+});
+

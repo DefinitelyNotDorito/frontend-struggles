@@ -47,7 +47,6 @@
         <div class="game-header">
             <div class="player-info header-item">
                 <span id="player-name"></span>
-                <i class="fa-solid fa-person-hiking" id="player-icon"></i>
             </div>
             <div class="level-counter header-item"></div>
             <div class="currency-counter header-item">
@@ -56,13 +55,27 @@
             </div>
         </div>
         <div class="game-grid">
-            <div class="game-area game-area-left">
-                <label>-</label>
-
+            <div class="game-area game-area-middle">
             </div>
-            <div class="game-area game-area-middle-top"></div>
-            <div class="game-area game-area-middle-bottom"></div>
-            <div class="game-area game-area-right"></div>
+            <div class="game-area game-area-right">
+                <div class="game-sidebar">
+                    <h3 class="sidebar-button" id="b-inv">
+                        <i class="fa-solid fa-backpack fa-fw"></i>
+                        <span class="sidebar-label hidden-sidebar-label">Inventory</span>
+                    </h3>
+                    <h3 class="sidebar-button" id="b-adv">
+                        <i class="fa-solid fa-person-hiking fa-fw"></i>
+                        <span class="sidebar-label hidden-sidebar-label">Adventure</span>
+                    </h3>
+                    <h3 class="sidebar-button" id="b-shop">
+                        <i class="fa-solid fa-store fa-fw"></i>
+                        <span class="sidebar-label hidden-sidebar-label">Shop</span></h3>
+                    <h3 class="sidebar-button" id="b-stat">
+                        <i class="fa-solid fa-gear fa-fw"></i>
+                        <span class="sidebar-label hidden-sidebar-label">Stats</span>
+                    </h3>
+                </div>
+            </div>
         </div>
     </main>
     <script src="scripts/game.js"></script>
