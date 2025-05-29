@@ -1,12 +1,18 @@
 import { multiClassEdit } from "./utils.js"
 import { Player } from "./game-functionality.js"
 
-let player = new Player()
+const player = new Player()
 
 let b_buttons = document.querySelectorAll(".begin-button")
 let bb_counter = 0
 let b_boxes = document.querySelectorAll(".begin-box")
-let username_input = document.querySelector("#username-input")
+let sidebar_buttons = document.querySelectorAll(".sidebar-button")
+let xpw = 0
+
+const username_input = document.querySelector("#username-input")
+const money_counter = document.querySelector("#money-count")
+const xp_bar = document.querySelector("#level-progress")
+const level_counter = document.querySelector("#level-count")
 
 username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
@@ -51,7 +57,6 @@ function userCheck(){
     }
 }
 
-let sidebar_buttons = document.querySelectorAll(".sidebar-button")
 
 sidebar_buttons.forEach(sidebar_button => {
     sidebar_button.addEventListener("mouseover", () => {
@@ -76,13 +81,22 @@ sidebar_buttons.forEach(sidebar_button => {
 
     })
 });
-let money_counter = document.querySelector("#money-count")
 
 document.querySelector("#adv-go-button").addEventListener("click", () => {
-    player.money += 1
-    money_counter.innerHTML = player.money
+    updateStats(player, 5, 10)
 })
 
 document.querySelector("#temporary-stat-logger-button").addEventListener("click", () => {
     console.log(player)
 })
+
+function updateStats(plyr, money = 0, xp = 0, hp = 0){
+    plyr.money += money
+    money_counter.innerHTML = plyr.money
+
+    plyr.xp += xp
+    plyr.levelup(level_counter)
+    xpw = plyr.xp / (plyr.level + 1) * 10
+    xp_bar.style.width = `${xpw}%`
+
+}

@@ -46,7 +46,12 @@
             <div class="player-info header-item">
                 <span id="player-name"></span>
             </div>
-            <div class="level-counter header-item"></div>
+            <div class="level-counter header-item">
+                <div id="level-progress-container">
+                    <div id="level-progress"></div>
+                </div>
+                <span id="level-count">0</span>
+            </div>
             <div class="currency-counter header-item">
                 <span id="money-count">0</span>
                 <i class="fa-solid fa-dollar" id="dollar-icon"></i>
@@ -55,16 +60,19 @@
         <div class="game-grid-outside">
             <div class="game-areas game-area-middle">
                 <div class="game-tab hidden" id="inv">
-                    <p id="" class="tab-button">button</p>
+                    <button id="" class="tab-button">button</button>
                 </div>
                 <div class="game-tab hidden" id="adv">
-                    <p id="adv-go-button" class="tab-button">button that gives money</p>
+                    <button id="adv-go-button" class="tab-button">button that gives money and xp lol</button>
                 </div>
                 <div class="game-tab hidden" id="shop">
-                    <p id="" class="tab-button">button</p>
+                    <button id="" class="tab-button">button</button>
                 </div>
                 <div class="game-tab hidden" id="stat">
-                    <p id="temporary-stat-logger-button" class="tab-button">button</p>
+                    <button id="temporary-stat-logger-button" class="tab-button">button</button>
+                </div>
+                <div class="game-tab hidden" id="skill">
+                    <button id="temporary-stat-logger-button" class="tab-button">button</button>
                 </div>
             </div>
             <div class="game-areas game-area-right">
@@ -84,6 +92,10 @@
                     <h3 class="sidebar-button" id="b-stat">
                         <i class="fa-solid fa-gear fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Stats</span>
+                    </h3>
+                    <h3 class="sidebar-button" id="b-skill">
+                        <i class="fa-solid fa-arrow-up fa-fw"></i>
+                        <span class="sidebar-label hidden-sidebar-label">Skills</span>
                     </h3>
                 </div>
             </div>

@@ -16,6 +16,10 @@
     transition: 0.2s;
 }
 
+button{
+    border: none;
+}
+
 .begin {
     position: absolute;
     inset: 0;
@@ -182,6 +186,36 @@ main {
     font-style: italic;
 }
 
+.level-counter{
+    width: 28rem
+}
+
+#level-progress-container{    
+    height: .3em;
+    width: calc(100% - 1em);
+    background-color: #8f8f8f;
+    border-radius: 0.1rem;
+    position: relative;
+
+}
+#level-progress{
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    transition-duration: 1s;
+    background-color: #3cff00;
+    border-radius: 0.1rem;
+}
+
+#level-count{
+    position: absolute;
+    font-size: 1.2em;
+    color: #3cff00;
+    background-color: rgba(0, 0, 0, 0.603);
+    padding: 0.1em 0.4em;
+    border-radius: 0.3rem;
+}
+
 .game-grid-outside {
     margin: 5vh 0;
     grid-column: 2;
@@ -246,8 +280,8 @@ main {
 }
 
 #b-inv {
-    color: #ffc3c3;
-    background-color: #741b1b;
+    color: #ff6565;
+    background-color: #522525;
     border-radius: 10rem 4.4rem 0 10rem;
 }
 
@@ -264,7 +298,13 @@ main {
 #b-stat {
     color: rgb(255, 241, 160);
     background-color: #554d2a;
+}
+
+#b-skill {
+    color: rgb(174, 106, 212);
+    background-color: #1d1433;
     border-radius: 10rem 0 4.4rem 10rem;
+
 }
 
 .game-area-middle {
@@ -303,6 +343,12 @@ main {
 #stat { 
     background-color: rgb(66, 64, 50); 
     --primary-color:  #dab927;
+    --primary-text: rgb(255, 255, 255);
+
+}
+#skill{
+    background-color: rgb(41, 33, 61);
+    --primary-color:  #6c27da;
     --primary-text: rgb(255, 255, 255);
 
 }
