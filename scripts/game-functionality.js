@@ -1,11 +1,11 @@
 export class Player {
-    constructor(){
-        this.username = ""
-        this.money = 0
-        this.level = 0
-        this.xp = 0
-        this.hp = 40
-        this.maxhp = 40
+    constructor(username = '', money = 0, level = 0, xp = 0, level = 0, hp = 40, maxhp = 40,){
+        this.username = username
+        this.money = money
+        this.level = level
+        this.xp = xp
+        this.hp = hp
+        this.maxhp = maxhp
         this.inventory = []
         this.equipped = {
             weapon: null,
@@ -41,7 +41,7 @@ export class Player {
     consumeItem(item){
         if (item.type === 'consumable'){
             if (item.effect.hp){
-                this.hp = Math.min(this.maxhp, this.hp + this.effect.hp)
+                this.hp = Math.min(this.maxhp, this.hp + item.effect.hp)
             }
             else if (item.effect.xp){
                 this.xp += item.effect.xp
