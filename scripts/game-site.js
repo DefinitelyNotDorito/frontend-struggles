@@ -7,6 +7,7 @@ let b_buttons = document.querySelectorAll(".begin-button")
 let bb_counter = 0
 let b_boxes = document.querySelectorAll(".begin-box")
 let sidebar_buttons = document.querySelectorAll(".sidebar-button")
+
 let xpw = 0
 
 const username_input = document.querySelector("#username-input")
@@ -19,6 +20,7 @@ const stat_hp = document.querySelector("#stat-hp")
 const stat_xp = document.querySelector("#stat-xp")
 const stat_money = document.querySelector("#stat-money")
 const stat_name = document.querySelector("#stat-name")
+const stat_invnum = document.querySelector("#stat-invnum")
 
 username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
@@ -99,10 +101,11 @@ function statsTab(plyr){
     stat_level.innerHTML = plyr.level
     stat_xp.innerHTML = `${plyr.xp} / ${(plyr.level + 1) * 10}`
     stat_money.innerHTML = plyr.money
+    stat_invnum.innerHTML = plyr.inventory.length
 }
 
 
-function updateStats(plyr, money = 0, xp = 0, hp = 0){
+function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
     plyr.money += money
     money_counter.innerHTML = plyr.money
 
@@ -110,6 +113,10 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0){
     plyr.levelup(level_counter)
     xpw = plyr.xp / (plyr.level + 1) * 10
     xp_bar.style.width = `${xpw}%`
-    statsTab(plyr)
 
+    itmArray.forEach(itm => {
+        plyr.inventory.push(itm)
+    });
+
+    statsTab(plyr)
 }
