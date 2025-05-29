@@ -14,6 +14,12 @@ const money_counter = document.querySelector("#money-count")
 const xp_bar = document.querySelector("#level-progress")
 const level_counter = document.querySelector("#level-count")
 
+const stat_level = document.querySelector("#stat-level")
+const stat_hp = document.querySelector("#stat-hp")
+const stat_xp = document.querySelector("#stat-xp")
+const stat_money = document.querySelector("#stat-money")
+const stat_name = document.querySelector("#stat-name")
+
 username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
 
@@ -43,6 +49,7 @@ function bbToggle(){
     if(bb_counter == 1){
         player.username = username_input.value
         document.querySelector("#player-name").innerHTML = player.username
+        statsTab(player)
     }
 
 }
@@ -86,9 +93,14 @@ document.querySelector("#adv-go-button").addEventListener("click", () => {
     updateStats(player, 5, 10)
 })
 
-document.querySelector("#temporary-stat-logger-button").addEventListener("click", () => {
-    console.log(player)
-})
+function statsTab(plyr){
+    stat_name.innerHTML = plyr.username
+    stat_hp.innerHTML = `${plyr.hp} / ${plyr.maxhp}`
+    stat_level.innerHTML = plyr.level
+    stat_xp.innerHTML = `${plyr.xp} / ${(plyr.level + 1) * 10}`
+    stat_money.innerHTML = plyr.money
+}
+
 
 function updateStats(plyr, money = 0, xp = 0, hp = 0){
     plyr.money += money
@@ -98,5 +110,6 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0){
     plyr.levelup(level_counter)
     xpw = plyr.xp / (plyr.level + 1) * 10
     xp_bar.style.width = `${xpw}%`
+    statsTab(plyr)
 
 }
