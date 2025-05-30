@@ -40,7 +40,6 @@ function bbToggle(){
             let b = document.querySelector(".begin")
             document.querySelector(".game-header").style.opacity = 1
             b.classList.add("fade-out")
-            
             setTimeout(() => {
                 b.remove()
             }, 500);
@@ -76,15 +75,16 @@ sidebar_buttons.forEach(sidebar_button => {
     })
     sidebar_button.addEventListener("click", () => {
         let tabs = document.querySelectorAll(".game-tab")
+
         tabs.forEach(tab => {
+
             if(tab.id == sidebar_button.id.substring(2)){
-                tab.style.display = "grid"
-                tab.classList.remove("hidden")
+                multiClassEdit(tab, "remove", ["hidden", "d-none"])
                 tab.classList.add("selected-tab")
             }
             else{
-                tab.classList.add("hidden")
-                tab.style.display = "none"
+                multiClassEdit(tab, "add", ["hidden", "d-none"])
+                tab.classList.remove("selected-tab")
             }
         });
 

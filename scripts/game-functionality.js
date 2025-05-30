@@ -1,5 +1,5 @@
 export class Player {
-    constructor(username = '', money = 0, level = 0, xp = 0, level = 0, hp = 40, maxhp = 40,){
+    constructor(username = '', money = 0, level = 0, xp = 0, hp = 40, maxhp = 40){
         this.username = username
         this.money = money
         this.level = level

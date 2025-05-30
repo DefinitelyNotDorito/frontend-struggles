@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="styles/game.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+    
     <title>RPG</title>
 </head>
 
 <body>
-    <a href="index.html" id="xxx">x</a>
     <div class="begin">
         <div class="begin-container">
             <div class="begin-box" id="bb1">
@@ -44,31 +45,36 @@
     <main>
         <div class="game-header">
             <div class="player-info header-item">
-                <span id="player-name"></span>
+                <span id="player-name" class="player-name"></span>
             </div>
             <div class="level-counter header-item">
-                <div id="level-progress-container">
-                    <div id="level-progress"></div>
+                <div id="level-progress-container" class="level-progress-container">
+                    <div id="level-progress" class="level-progress"></div>
                 </div>
-                <span id="level-count">0</span>
+                <span id="level-count" class="level-count">0</span>
             </div>
             <div class="currency-counter header-item">
-                <span id="money-count">0</span>
-                <i class="fa-solid fa-dollar" id="dollar-icon"></i>
+                <span id="money-count" class="money-count">0</span>
+                <i class="fa-solid fa-dollar dollar-icon" id="dollar-icon"></i>
             </div>
         </div>
         <div class="game-grid-outside">
             <div class="game-areas game-area-middle">
-                <div class="game-tab hidden" id="inv">
-
+                <div class="game-tab hidden inv" id="inv">
+                    <div class="inventory-selected"></div>
+                    <div class="inventory-container">
+                        <div class="inventory-item">
+                            <i class="fa-solid fa-alien item-icon"></i>
+                            <p class="item-name">Wooden Sword</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="game-tab hidden" id="adv">
+                <div class="game-tab hidden adv" id="adv">
                     <button id="adv-go-button" class="tab-button">button that gives money and xp lol</button>
                 </div>
-                <div class="game-tab hidden" id="shop">
-
+                <div class="game-tab hidden shop" id="shop">
                 </div>
-                <div class="game-tab hidden" id="stat">
+                <div class="game-tab hidden stat" id="stat">
                     <ul>
                         <li>Username: <span id="stat-name"></span></li>
                         <li>Health: <span id="stat-hp"></span></li>
@@ -76,32 +82,31 @@
                         <li>Xp: <span id="stat-xp"></span></li>
                         <li>Money: <span id="stat-money"></span></li>
                         <li>Number of items: <span id="stat-invnum"></span></li>
-
                     </ul>
                 </div>
-                <div class="game-tab hidden" id="skill">
+                <div class="game-tab hidden skill" id="skill">
                     <button class="tab-button">button</button>
                 </div>
             </div>
             <div class="game-areas game-area-right">
                 <div class="sidebar">
-                    <h3 class="sidebar-button" id="b-inv">
+                    <h3 class="sidebar-button b-inv" id="b-inv">
                         <i class="fa-solid fa-backpack fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Inventory</span>
                     </h3>
-                    <h3 class="sidebar-button" id="b-adv">
+                    <h3 class="sidebar-button b-adv" id="b-adv">
                         <i class="fa-solid fa-person-hiking fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Adventure</span>
                     </h3>
-                    <h3 class="sidebar-button" id="b-shop">
+                    <h3 class="sidebar-button b-shop" id="b-shop">
                         <i class="fa-solid fa-store fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Shop</span>
                     </h3>
-                    <h3 class="sidebar-button" id="b-stat">
+                    <h3 class="sidebar-button b-stat" id="b-stat">
                         <i class="fa-solid fa-gear fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Stats</span>
                     </h3>
-                    <h3 class="sidebar-button" id="b-skill">
+                    <h3 class="sidebar-button b-skill" id="b-skill">
                         <i class="fa-solid fa-arrow-up fa-fw"></i>
                         <span class="sidebar-label hidden-sidebar-label">Skills</span>
                     </h3>
