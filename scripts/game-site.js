@@ -127,34 +127,42 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
 
 let sword1 = new Weapon("Iron Sword", "sword_iron", 5, "sword made of iron", 5, 2)
 
-document.querySelector("#invaddbtn").addEventListener("click", () => {addItem(sword1)})
+document.querySelector("#invaddbtn").addEventListener("click", () => {
+    player.inventory.push(sword1)
+    refreshInventory(player)
+    console.log(player)
+})
 
-function addItem(item){
+function refreshInventory(plyr){
+
     let item_element = document.createElement("div")
     let item_name = document.createElement("p")
     let item_icon = document.createElement("i")
 
-    item_name.classList.add("item-name")
-    item_name.innerHTML = item.name
+    plyr.inventory.forEach(item => {
+        item_name.classList.add("item-name")
+        item_name.innerHTML = item.name
 
-    multiClassEdit(item_icon, "add", ['fa-solid', 'item-icon'])
-    switch(item.type){
-        case 'armor':
-            item_icon.classList.add("fa-shirt")
-            break
-        case 'shield':
-            item_icon.classList.add("fa-shield")
-            break
-        case 'weapon':
-            item_icon.classList.add("fa-sword")
-            break
-        case 'consumable':
-            item_icon.classList.add("fa-flask-round-potion")
-    }
-    
-    multiClassEdit(item_element, "add", [`${item.rarity}`, 'inventory-item'])
+        multiClassEdit(item_icon, "add", ['fa-solid', 'item-icon'])
+        switch(item.type){
+            case 'armor':
+                item_icon.classList.add("fa-shirt")
+                break
+            case 'shield':
+                item_icon.classList.add("fa-shield")
+                break
+            case 'weapon':
+                item_icon.classList.add("fa-sword")
+                break
+            case 'consumable':
+                item_icon.classList.add("fa-flask-round-potion")
+                break
+        }
+        
+        multiClassEdit(item_element, "add", [`${item.rarity}`, 'inventory-item'])
 
-    item_element.appendChild(item_icon)
-    item_element.appendChild(item_name)
-    inventory_container.appendChild(item_element)
+        item_element.appendChild(item_icon)
+        item_element.appendChild(item_name)
+        inventory_container.appendChild(item_element)
+    });
 }
