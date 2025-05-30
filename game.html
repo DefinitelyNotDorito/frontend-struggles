@@ -62,12 +62,18 @@
             <div class="game-areas game-area-middle">
                 <div class="game-tab hidden inv" id="inv">
                     <div class="inventory-selected">
-                        <button class="tab-button" id="invaddbtn">button that adds an item lol</button>
                     </div>
                     <div class="inventory-container">
-                        <div class="inventory-item common">
-                            <i class="fa-solid fa-sword item-icon"></i>
-                            <p class="item-name">Wooden Sword</p>
+                        <div class="inventory-stuff">
+                            <button class="tab-button" id="rand-item-btn">add random item</button>
+                            <button class="tab-button" id="clear-inventory">clear inventory (debug)</button>
+                            <input type="text" id="item-search">
+                        </div>
+                        <div class="inventory-item-container">
+                            <div class="inventory-item common">
+                                <i class="fa-solid fa-sword item-icon"></i>
+                                <p class="item-name">Wooden Sword</p>
+                            </div>
                         </div>
                     </div>
                 </div>

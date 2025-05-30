@@ -1,5 +1,5 @@
-import { multiClassEdit } from "./utils.js"
-import { Player, Weapon } from "./game-functionality.js"
+import { multiClassEdit, iconSelector } from "./utils.js"
+import { Player, getRandomItem, Weapon, Consumable, Armor, Shield } from "./game-functionality.js"
 
 const player = new Player()
 
@@ -22,7 +22,9 @@ const stat_money = document.querySelector("#stat-money")
 const stat_name = document.querySelector("#stat-name")
 const stat_invnum = document.querySelector("#stat-invnum")
 
-const inventory_container = document.querySelector(".inventory-container")
+const inventory_container = document.querySelector(".inventory-item-container")
+const inventory_clear_button = document.querySelector("#clear-inventory")
+const random_item_button = document.querySelector("#rand-item-btn")
 
 username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
@@ -108,6 +110,7 @@ function statsTab(plyr){
 
 
 function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
+
     plyr.money += money
     money_counter.innerHTML = plyr.money
 
@@ -121,48 +124,40 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
     itmArray.forEach(itm => {
         plyr.inventory.push(itm)
     });
-
+    refreshInventory(plyr)
     statsTab(plyr)
+    
 }
 
-let sword1 = new Weapon("Iron Sword", "sword_iron", 5, "sword made of iron", 5, 2)
-
-document.querySelector("#invaddbtn").addEventListener("click", () => {
-    player.inventory.push(sword1)
+random_item_button.addEventListener("click", () => {
+    player.inventory.push(getRandomItem())
     refreshInventory(player)
     console.log(player)
+})
+inventory_clear_button.addEventListener("click", () => {
+    player.inventory = []
+    refreshInventory(player)
 })
 
 function refreshInventory(plyr){
 
-    let item_element = document.createElement("div")
-    let item_name = document.createElement("p")
-    let item_icon = document.createElement("i")
+    inventory_container.innerHTML = ''
 
     plyr.inventory.forEach(item => {
-        item_name.classList.add("item-name")
-        item_name.innerHTML = item.name
+        let itmico = iconSelector(item.type)
 
-        multiClassEdit(item_icon, "add", ['fa-solid', 'item-icon'])
-        switch(item.type){
-            case 'armor':
-                item_icon.classList.add("fa-shirt")
-                break
-            case 'shield':
-                item_icon.classList.add("fa-shield")
-                break
-            case 'weapon':
-                item_icon.classList.add("fa-sword")
-                break
-            case 'consumable':
-                item_icon.classList.add("fa-flask-round-potion")
-                break
-        }
-        
-        multiClassEdit(item_element, "add", [`${item.rarity}`, 'inventory-item'])
+        const itemHtml = document.createElement("div")
+        const itemName = document.createElement("p")
+        const itemIcon = document.createElement("i")
 
-        item_element.appendChild(item_icon)
-        item_element.appendChild(item_name)
-        inventory_container.appendChild(item_element)
+        itemName.innerHTML = item.name
+        itemIcon.className = `fa-solid ${itmico} item-icon`
+        itemName.classList = 'item-name'
+        itemHtml.classList = `inventory-item ${item.rarity}`
+        itemHtml.appendChild(itemIcon)
+        itemHtml.appendChild(itemName)
+
+        inventory_container.appendChild(itemHtml)
     });
 }
+
