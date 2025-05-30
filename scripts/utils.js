@@ -15,3 +15,13 @@ export function multiClassEdit(target, cmode, class_array){
         });
     }
 }
+
+export function iconSelector(type){
+    const icons = {
+        'weapon': 'fa-sword',
+        'shield': 'fa-shield',
+        'armor': 'fa-shirt',
+        'consumable': 'fa-flask-round-potion'
+    }
+    return icons[type] || 'fa-question'
+}

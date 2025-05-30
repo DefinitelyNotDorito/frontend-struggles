@@ -360,6 +360,10 @@ main {
 
 .inventory-item-container{
   height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  padding: 0.6em;
 }
 
 .inventory-item{
