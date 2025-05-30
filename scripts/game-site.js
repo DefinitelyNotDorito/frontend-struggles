@@ -131,12 +131,12 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
 
 random_item_button.addEventListener("click", () => {
     player.inventory.push(getRandomItem())
-    refreshInventory(player)
+    updateStats(player)
     console.log(player)
 })
 inventory_clear_button.addEventListener("click", () => {
     player.inventory = []
-    refreshInventory(player)
+    updateStats(player)
 })
 
 function refreshInventory(plyr){

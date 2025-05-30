@@ -355,21 +355,57 @@ main {
 
 .inventory-container{
   display: grid;
-  grid-template-rows: 20% auto;
+  grid-template-rows: 3em auto;
 }
 
-.inventory-item-container{
-  height: fit-content;
+.inventory-item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
+    gap: 0.6em  ;
+    padding: 1em;
+    background: linear-gradient(135deg, #612727 0%, #4a1f1f 100%);
+    border-radius: 0.5rem;
+    border: 2px solid #8b3333;
+    max-height: 46vh;
+    overflow-y: scroll;
+}
+
+.inventory-stuff{
   display: flex;
-  flex-flow: row wrap;
-  gap: 1em;
-  padding: 0.6em;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
 }
 
 .inventory-item{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  border: 2px solid transparent;
+
+  user-select: none;
+
   aspect-ratio: 1;
-  height: 5em;
+  height: 7em;
+  border-radius: 0.5rem;
   background-color: var(--content-box-background);
+}
+
+.inventory-item:hover{
+  scale: 1.05;
+  border-color: white;
+}
+
+.item-name{
+  margin: 0;
+  color: var(--primary-text);
+  font-size: 0.9em;
+  overflow: scroll;
+}
+.item-icon{
+  font-size: 2.5rem;
 }
 
 .adv {
@@ -429,21 +465,26 @@ main {
 
 .common { 
     border-color: #9ca3af;
-    box-shadow: 0 0 8px rgb(156, 163, 175);
+    color: rgb(156, 163, 175);
+    box-shadow: 0 0 8px rgb(156, 163, 175) inset;
 }
 .uncommon { 
     border-color: #84cc16;
-    box-shadow: 0 0 8px rgb(131, 204, 22);
+    color: rgb(131, 204, 22);
+    box-shadow: 0 0 8px rgb(131, 204, 22) inset;
 }
 .rare { 
     border-color: #3b82f6;
+    color: rgb(59, 131, 246);
     box-shadow: 0 0 8px rgb(59, 131, 246);
 }
 .epic { 
     border-color: #a855f7;
+    color: rgb(169, 85, 247);
     box-shadow: 0 0 8px rgb(169, 85, 247);
 }
 .legendary { 
     border-color: #f59e0b;
+    color: rgb(245, 159, 11);
     box-shadow: 0 0 12px rgb(245, 159, 11);
 }
