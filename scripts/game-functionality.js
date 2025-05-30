@@ -13,11 +13,10 @@ export class Player {
             shield: null
         }
     }
-    levelup(counter) {
+    levelup() {
         while(this.xp >= (this.level + 1) * 10){
             this.level += 1
             this.xp -= this.level * 10
-            counter.innerHTML = this.level
         }
     }
     addItem(item){
@@ -52,39 +51,41 @@ export class Player {
     }
 }
 export class Item {
-    constructor(name, id, price, description, type){
+    constructor(name, id, price, description, rarity = 0, type){
         this.name = name
         this.id = id
         this.price = price
         this.description = description
         this.type = type
+        this.rarity = ['common', 'uncommon', 'rare', 'epic', 'legendary']
+        this.rarity = this.rarity[rarity]
     }
 }
 
 export class Weapon extends Item{
-    constructor(name, id, price, description, damage){
-        super(name, id, price, description, 'weapon')
+    constructor(name, id, price, description, damage, rarity){
+        super(name, id, price, description, rarity, 'weapon')
         this.damage = damage
     }
 }
 
 export class Armor extends Item{
-    constructor(name, id, price, description, armor){
-        super(name, id, price, description, 'armor')
+    constructor(name, id, price, description, armor, rarity){
+        super(name, id, price, description, rarity, 'armor')
         this.armor  = armor
     }
 }
 
 export class Shield extends Item{
-    constructor(name, id, price, description, defense){
-        super(name, id, price, description, 'shield')
+    constructor(name, id, price, description, defense, rarity){
+        super(name, id, price, description, rarity, 'shield')
         this.defense  = defense
     }
 }
 
 export class Consumable extends Item{
-    constructor(name, id, price, description, effect){
-        super(name, id, price, description, 'consumable')
+    constructor(name, id, price, description, effect, rarity){
+        super(name, id, price, description, rarity, 'consumable')
         this.effect = effect
     }
 }
