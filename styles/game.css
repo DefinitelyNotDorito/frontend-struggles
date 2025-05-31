@@ -374,6 +374,7 @@ main {
   --primary-color: rgb(255, 65, 65);
   --primary-text: rgb(255, 255, 255);
   --content-background: #5e2020;
+  overflow-y: scroll;
 }
 
 .inv-container{
@@ -382,7 +383,6 @@ main {
   height: fit-content;
   display: grid;
   justify-content: center;
-  overflow-y: scroll;
   grid-template-columns: repeat(auto-fill, minmax(8rem, 8rem));
   grid-auto-rows: 8rem;
   gap: 1em;
@@ -402,14 +402,18 @@ main {
   cursor: pointer;
 }
 .inv-item:hover{
-  transform: rotate(4deg);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .selected-item{
+  padding: 1em;
   aspect-ratio: 0;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: max-content max-content auto;
+  gap: 1em;
   width: 100%;
   height: 100%;
   grid-column: span 3;
@@ -417,13 +421,47 @@ main {
 }
 
 .item-stuff{
-  grid-column: 2;
-  grid-row: span 2;
+  grid-column: span 2;
+  grid-row: 2;
 }
 
 .item-name{
-  grid-row: 2;
-  grid-column: 1;
+  grid-row: 1;
+  grid-column: 2;
+  margin: 0.3em 0;
+  color: rgb(255, 255, 255);
+}
+
+.item-icon {
+  font-size: 2.5em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.item-description, .item-rarity{
+  word-break: keep-all;
+  hyphens: none;
+  margin: 0;
+}
+.item-description{
+  font-size: 1.22em;
+  color: rgb(255, 255, 255);
+}
+.item-rarity{
+  font-size: 1.4em;
+  font-style: italic;
+}
+.selected-item .item-icon{
+  font-size: 3em;
+  padding: 0.4em;
+  aspect-ratio: 1;
+  width: fit-content;
+  background-color: var(--content-background);
+}
+.selected-item .item-name{
+  background-color: var(--content-background);
+  font-size: 1.8em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  padding: 0.4em;
 }
 
 .item-buttons{
@@ -435,9 +473,25 @@ main {
   padding: 0 1em;
 }
 
+.item-action-button{
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.3em 0.4em;
+  border-radius: 0.3rem;
+  font-size: 1em;
+}
+
+.item-action-button:hover{
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
 .inv-item.selected-item:hover {
   transform: none;
 }
+
+
 
 /* adventure */
 
@@ -558,25 +612,21 @@ main {
 .common { 
     border-color: #9ca3af;
     color: rgb(156, 163, 175);
-    box-shadow: 0 0 8px rgb(156, 163, 175) inset;
 }
 .uncommon { 
     border-color: #84cc16;
     color: rgb(131, 204, 22);
-    box-shadow: 0 0 8px rgb(131, 204, 22) inset;
+
 }
 .rare { 
     border-color: #3b82f6;
     color: rgb(59, 131, 246);
-    box-shadow: 0 0 8px rgb(59, 131, 246);
 }
 .epic { 
     border-color: #a855f7;
     color: rgb(169, 85, 247);
-    box-shadow: 0 0 8px rgb(169, 85, 247);
 }
 .legendary { 
     border-color: #f59e0b;
     color: rgb(245, 159, 11);
-    box-shadow: 0 0 12px rgb(245, 159, 11);
 }

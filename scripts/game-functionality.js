@@ -22,8 +22,11 @@ export class Player {
     addItem(item){
         this.inventory.push(item)
     }
-    removeItem(itemID){
-        this.inventory = this.inventory.filter(item => item.id !== itemID)
+    removeItem(item){
+        const index = this.inventory.indexOf(item)
+        if(index != -1){
+            this.inventory.splice(index, 1)
+        }
     }
     equipItem(item){
         if(item.reqlvl <= this.level){
@@ -55,7 +58,7 @@ export class Player {
                 this.xp += item.effect.xp
                 this.levelup()
             }
-            this.removeItem(item.id)
+            this.removeItem(item)
         }
 
     }

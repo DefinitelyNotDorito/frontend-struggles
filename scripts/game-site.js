@@ -162,7 +162,7 @@ function updateInv(plyr){
             const consumebtn = document.createElement('button')
             consumebtn.classList = `item-action-button consume-button`
             consumebtn.addEventListener('click', () => itemAction(plyr, item, 'use'))
-            consumebtn.innerHTML = 'USE'
+            consumebtn.innerHTML = 'Use'
             itmBtns.appendChild(consumebtn)
         }
         else{
@@ -178,6 +178,7 @@ function updateInv(plyr){
         itmBtns.appendChild(sellBtn)
 
         itm.classList.add('inv-item')
+        itm.classList.add(item.rarity)
         itmName.classList.add('item-name')
         itmIcon.classList = `fa-solid ${iconSelector(item.type)} item-icon`
         itmName.innerHTML = item.name
@@ -211,7 +212,6 @@ function selectItem(e, itm, inv) {
     itm.classList.add('selected-item')
     itemStuff.classList.remove('hidden')
     itemButtons.classList.remove('hidden')
-    inv.prepend(itm)
 }
 
 function itemAction(plyr, itm, action){
@@ -229,7 +229,7 @@ function itemAction(plyr, itm, action){
         case 'sell':
             plyr.money += (Math.ceil(itm.price / 2))
             console.log(`sold ${itm.name}`)
-            plyr.removeItem(itm.id)
+            plyr.removeItem(itm)
             updateStats(plyr)
             break;
     }
