@@ -95,10 +95,6 @@ sidebar_buttons.forEach(sidebar_button => {
     })
 });
 
-document.querySelector("#adv-go-button").addEventListener("click", () => {
-    updateStats(player, 5, 10)
-})
-
 function statsTab(plyr){
     stat_name.innerHTML = plyr.username
     stat_hp.innerHTML = `${plyr.hp} / ${plyr.maxhp}`

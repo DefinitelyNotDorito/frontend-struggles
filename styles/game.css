@@ -408,10 +408,45 @@ main {
   font-size: 2.5rem;
 }
 
+/* adventure */
+
 .adv {
   background-color: rgb(46, 63, 46);
   --primary-color: #73b819;
   --primary-text: rgb(255, 255, 255);
+}
+.adventure-areas{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.adventure-area{
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition-duration: 0.3s;
+
+}
+.plains{
+  background: linear-gradient(0deg,rgba(194, 217, 95, 1) 0%, rgba(78, 143, 50, 1) 100%);
+  color: rgb(252, 255, 203);
+}
+.forest{
+  background: linear-gradient(180deg,rgb(46, 54, 19) 0%, rgb(67, 88, 56) 100%);
+  color: rgb(153, 177, 120);
+}
+.cave{
+  background: linear-gradient(180deg,rgb(48, 48, 48) 0%, rgb(95, 9, 9) 100%);
+  color: rgb(228, 94, 94);
+}
+
+.mine{
+  background: linear-gradient(0deg,rgba(2, 0, 36, 1) 0%, rgb(6, 6, 85) 35%, rgb(1, 72, 87) 100%);
+  color: rgb(106, 108, 219);
 }
 
 .shop {
