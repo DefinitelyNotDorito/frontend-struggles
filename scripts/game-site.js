@@ -1,6 +1,74 @@
 import { multiClassEdit, iconSelector } from "./utils.js"
 import { Player, getRandomItem, Weapon, Consumable, Armor, Shield } from "./game-functionality.js"
 
+class TabMgr{
+    constructor(){
+        this.currentTab = null
+        this.tabs = new Map
+        this.smalltabs = new Map
+        this.buttons = new Map
+        this.init()
+    }
+    init(){
+        const tabElements = document.querySelectorAll('.game-tab')
+        const stabElements = document.querySelectorAll(".small-tab")
+        const tabButtons = document.querySelectorAll('.sidebar-button')
+
+        tabElements.forEach(tab => {
+            this.tabs.set(tab.id, tab)
+        })
+        stabElements.forEach(stab => {
+            this.smalltabs.set(stab.id.substring(10), stab)
+        })
+        tabButtons.forEach(tabbtn => {
+            this.buttons.set(tabbtn.id.substring(2), tabbtn)
+
+            tabbtn.addEventListener('click', () => this.switchTab(tabbtn.id.substring(2)))
+            tabbtn.addEventListener('mouseover', () => tabbtn.querySelector('.sidebar-label').classList.remove('hidden-sidebar-label'))
+            tabbtn.addEventListener('mouseout', () => tabbtn.querySelector('.sidebar-label').classList.add('hidden-sidebar-label'))
+        })
+
+    }
+    switchTab(tabId){
+        if(this.currentTab === tabId){
+            return
+        }
+        if(this.currentTab){
+            this.hideTab(this.currentTab)
+        }
+        this.showTab(tabId)
+        this.currentTab = tabId
+        updateStats(player)
+    }
+    hideTab(tabId){
+        const tab = this.tabs.get(tabId)
+        const stab = this.smalltabs.get(tabId)
+
+        if(tab){
+            tab.classList.add('hidden')
+            tab.classList.remove('selected-tab')
+        }
+        if(stab){
+            stab.classList.add('hidden')
+            stab.classList.remove('small-tab-selected')
+        }
+    }
+    showTab(tabId){
+        const tab = this.tabs.get(tabId)
+        const stab = this.smalltabs.get(tabId)
+        if(tab){
+            tab.classList.add('selected-tab')
+            tab.classList.remove('hidden')
+        }
+        if(stab){
+            stab.classList.remove('hidden')
+            stab.classList.add('small-tab-selected')
+        }
+    }
+}
+
+const tabMgr = new TabMgr()
+console.log(tabMgr)
 const player = new Player()
 
 const b_buttons = document.querySelectorAll(".begin-button")
@@ -55,32 +123,6 @@ function userCheck(){
         b_buttons[bb_counter].disabled = true
     }
 }
-
-const sidebar_buttons = document.querySelectorAll(".sidebar-button")
-sidebar_buttons.forEach(sidebar_button => {
-    sidebar_button.addEventListener("mouseover", () => {
-        sidebar_button.querySelector("span").classList.remove("hidden-sidebar-label")
-    })
-    sidebar_button.addEventListener("mouseout", () => {
-        sidebar_button.querySelector("span").classList.add("hidden-sidebar-label")
-    })
-    sidebar_button.addEventListener("click", () => {
-        let tabs = document.querySelectorAll(".game-tab")
-
-        tabs.forEach(tab => {
-
-            if(tab.id == sidebar_button.id.substring(2)){
-                multiClassEdit(tab, "remove", ["hidden", "d-none"])
-                tab.classList.add("selected-tab")
-            }
-            else{
-                multiClassEdit(tab, "add", ["hidden", "d-none"])
-                tab.classList.remove("selected-tab")
-            }
-        });
-
-    })
-});
 
 function statsTab(plyr){
     const stat_list = document.querySelector("#stat-list")

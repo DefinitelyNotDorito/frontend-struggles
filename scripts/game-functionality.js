@@ -112,11 +112,13 @@ let items = {
     },
     'weapons':{
         'sword_Wood':new Weapon('Wooden Sword', 'sword_wood', 5, 'A dull wooden sword... (2 damage)', 2, 0),
-        'sword_iron':new Weapon('Iron Sword', 'sword_iron', 15, 'A sharp iron sword! (7 damage) [requires level 5]', 7, 1, 5)
+        'sword_iron':new Weapon('Iron Sword', 'sword_iron', 15, 'A sharp iron sword! (7 damage) [requires level 5]', 7, 1, 5),
+        'sword_epic':new Weapon('Epic sword (testing)', 'sword_epic', 150, 'An epic sword! (420 damage) [req lvl 50]', 420, 3, 50)
     },
     'armors':{
         'armor_leather': new Armor('Leather Armor', 'armor_leather', 10, 'Some leather armor.. better than nothing? (3 armor)', 3, 0, 0),
-        'armor_iron': new Armor('Iron Armor', 'armor_iron', 25, 'Some iron armor! Definitely an improvement.. (6 armor) [requires level 5]', 6, 1, 5)
+        'armor_iron': new Armor('Iron Armor', 'armor_iron', 25, 'Some iron armor! Definitely an improvement.. (6 armor) [requires level 5]', 6, 1, 5),
+        'armor_legendary': new Armor('Legendary Armor (testing)', 'armor_leg',500,'Some legendary armor (6969 armor) [req lvl 100]', 6969, 4, 100)
 
     }
 }
