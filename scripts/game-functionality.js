@@ -94,22 +94,22 @@ export class Consumable extends Item{
 let items = {
     'consumables':{
     'hp_s':new Consumable('Health Potion (small)', 'hp_s', 10, 'A small health potion (heals 10hp)', {'hp':10}, 1),
-    'hp_m':new Consumable('Health Potion (medium)', 'hp_m', 15, 'A medium health potion (heals 20hp) [requires level 5]', {'hp':20}, 1, 5),
-    'hp_l':new Consumable('Health Potion (large)', 'hp_l', 30, 'A large health potion (heals 40hp) [requires level 10]', {'hp':40}, 1, 10)
+    'hp_m':new Consumable('Health Potion (medium)', 'hp_m', 15, 'A medium health potion (heals 20hp) [requires level 5]', {'hp':20}, 2, 5),
+    'hp_l':new Consumable('Health Potion (large)', 'hp_l', 30, 'A large health potion (heals 40hp) [requires level 10]', {'hp':40}, 2, 10)
     },
     'weapons':{
         'sword_Wood':new Weapon('Wooden Sword', 'sword_wood', 5, 'A dull wooden sword... (2 damage)', 2, 0),
         'sword_iron':new Weapon('Iron Sword', 'sword_iron', 15, 'A sharp iron sword! (7 damage) [requires level 5]', 7, 1, 5)
     },
     'armors':{
-        'armor_leather': new Armor('Leather Armor', 'armor_leather', 10, 'A leather armor.. better than nothing? (3 armor)', 3, 0, 0),
+        'armor_leather': new Armor('Leather Armor', 'armor_leather', 10, 'Some leather armor.. better than nothing? (3 armor)', 3, 0, 0),
         'armor_iron': new Armor('Iron Armor', 'armor_iron', 25, 'Some iron armor! Definitely an improvement.. (6 armor) [requires level 5]', 6, 1, 5)
 
     }
 }
 
 export function getRandomItem(){
-    const randcategory = Object.keys(items)[Math.floor(Math.random() * Object.keys(items).length)]
+    let randcategory = Object.keys(items)[Math.floor(Math.random() * Object.keys(items).length)]
     let randkeys = Object.keys(items[randcategory])
     let randomitemkey = randkeys[Math.floor(Math.random() * randkeys.length)]
 

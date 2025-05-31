@@ -53,6 +53,12 @@
                 </div>
                 <span id="level-count" class="level-count">0</span>
             </div>
+            <div class="hp-counter header-item">
+                <div id="hp-progress-container" class="hp-progress-container">
+                    <div id="hp-progress" class="hp-progress"></div>
+                </div>
+                <span id="hp-count" class="hp-count">0</span>
+            </div>
             <div class="currency-counter header-item">
                 <span id="money-count" class="money-count">0</span>
                 <i class="fa-solid fa-dollar dollar-icon" id="dollar-icon"></i>
@@ -61,16 +67,7 @@
         <div class="game-grid-outside">
             <div class="game-areas game-area-middle">
                 <div class="game-tab hidden inv" id="inv">
-                    <div class="inventory-selected">
-                    </div>
-                    <div class="inventory-container">
-                        <div class="inventory-stuff">
-                            <button class="tab-button" id="rand-item-btn">add random item</button>
-                            <button class="tab-button" id="clear-inventory">clear inventory (debug)</button>
-                        </div>
-                        <div class="inventory-item-container">
-                        </div>
-                    </div>
+                    <div class="inv-container"></div>
                 </div>
                 <div class="game-tab hidden adv" id="adv">
                     <div class="adventure-areas">
@@ -91,17 +88,11 @@
                 <div class="game-tab hidden shop" id="shop">
                 </div>
                 <div class="game-tab hidden stat" id="stat">
-                    <ul>
-                        <li>Username: <span id="stat-name"></span></li>
-                        <li>Health: <span id="stat-hp"></span></li>
-                        <li>Level: <span id="stat-level"></span></li>
-                        <li>Xp: <span id="stat-xp"></span></li>
-                        <li>Money: <span id="stat-money"></span></li>
-                        <li>Number of items: <span id="stat-invnum"></span></li>
+                    <ul id="stat-list">
                     </ul>
                 </div>
                 <div class="game-tab hidden skill" id="skill">
-                    <button class="tab-button">button</button>
+                    <button class="tab-button button-that-does-everything">button</button>
                 </div>
             </div>
             <div class="game-areas game-area-right">

@@ -3,28 +3,14 @@ import { Player, getRandomItem, Weapon, Consumable, Armor, Shield } from "./game
 
 const player = new Player()
 
-let b_buttons = document.querySelectorAll(".begin-button")
-let bb_counter = 0
-let b_boxes = document.querySelectorAll(".begin-box")
-let sidebar_buttons = document.querySelectorAll(".sidebar-button")
+const b_buttons = document.querySelectorAll(".begin-button")
+const b_boxes = document.querySelectorAll(".begin-box")
 
+let bb_counter = 0
 let xpw = 0
+let hpw = 100
 
 const username_input = document.querySelector("#username-input")
-const money_counter = document.querySelector("#money-count")
-const xp_bar = document.querySelector("#level-progress")
-const level_counter = document.querySelector("#level-count")
-
-const stat_level = document.querySelector("#stat-level")
-const stat_hp = document.querySelector("#stat-hp")
-const stat_xp = document.querySelector("#stat-xp")
-const stat_money = document.querySelector("#stat-money")
-const stat_name = document.querySelector("#stat-name")
-const stat_invnum = document.querySelector("#stat-invnum")
-
-const inventory_container = document.querySelector(".inventory-item-container")
-const inventory_clear_button = document.querySelector("#clear-inventory")
-const random_item_button = document.querySelector("#rand-item-btn")
 
 username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
@@ -55,6 +41,7 @@ function bbToggle(){
         player.username = username_input.value
         document.querySelector("#player-name").innerHTML = player.username
         statsTab(player)
+        updateStats(player)
     }
 
 }
@@ -69,7 +56,7 @@ function userCheck(){
     }
 }
 
-
+const sidebar_buttons = document.querySelectorAll(".sidebar-button")
 sidebar_buttons.forEach(sidebar_button => {
     sidebar_button.addEventListener("mouseover", () => {
         sidebar_button.querySelector("span").classList.remove("hidden-sidebar-label")
@@ -96,16 +83,24 @@ sidebar_buttons.forEach(sidebar_button => {
 });
 
 function statsTab(plyr){
-    stat_name.innerHTML = plyr.username
-    stat_hp.innerHTML = `${plyr.hp} / ${plyr.maxhp}`
-    stat_level.innerHTML = plyr.level
-    stat_xp.innerHTML = `${plyr.xp} / ${(plyr.level + 1) * 10}`
-    stat_money.innerHTML = plyr.money
-    stat_invnum.innerHTML = plyr.inventory.length
+    const stat_list = document.querySelector("#stat-list")
+    stat_list.innerHTML = `
+    <li>Username: ${plyr.username}</li>
+    <li>Health: ${plyr.hp} / ${plyr.maxhp}</li>
+    <li>Level: ${plyr.level}</li>
+    <li>XP: ${plyr.xp} / ${(plyr.level + 1) * 10}</li>
+    <li># of items: ${plyr.inventory.length}</li>
+    `
+    console.log(plyr)
 }
 
 
 function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
+    const money_counter = document.querySelector("#money-count")
+    const xp_bar = document.querySelector("#level-progress")
+    const level_counter = document.querySelector("#level-count")
+    const hp_bar = document.querySelector("#hp-progress")
+    const hp_counter = document.querySelector("#hp-count")
 
     plyr.money += money
     money_counter.innerHTML = plyr.money
@@ -117,43 +112,110 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
     xpw = plyr.xp / (plyr.level + 1) * 10
     xp_bar.style.width = `${xpw}%`
 
+    plyr.hp = Math.min(plyr.hp += hp, plyr.maxhp)
+
+    if (plyr.hp <= 0){
+        plyr.hp = 0
+        //add dying
+    }
+
+    hp_counter.innerHTML = `${plyr.hp} / ${plyr.maxhp}`
+
+    hpw = (plyr.hp / plyr.maxhp) * 100
+    if (hpw < 0){
+        hpw = 0
+    }
+    hp_bar.style.width = `${hpw}%`
+
     itmArray.forEach(itm => {
         plyr.inventory.push(itm)
     });
-    refreshInventory(plyr)
+
     statsTab(plyr)
-    
+    updateInv(plyr)
 }
 
-random_item_button.addEventListener("click", () => {
-    player.inventory.push(getRandomItem())
-    updateStats(player)
-    console.log(player)
-})
-inventory_clear_button.addEventListener("click", () => {
-    player.inventory = []
-    updateStats(player)
-})
-
-function refreshInventory(plyr){
-
-    inventory_container.innerHTML = ''
-
+function updateInv(plyr){
+    const inv = document.querySelector(".inv-container")
+    inv.innerHTML = ''
     plyr.inventory.forEach(item => {
-        let itmico = iconSelector(item.type)
+        const itm = document.createElement("div")
+        const itmName = document.createElement("h3")
+        const itmIcon = document.createElement("i")
+        const itmStuff = document.createElement('div')
+        const itmBtns = document.createElement("div")
+        const itmDesc = document.createElement("h4")
+        const itemRar = document.createElement("p")
+        const sellBtn = document.createElement('button')
+        
+        itmStuff.classList = 'item-stuff hidden'
+        itmBtns.classList = 'item-buttons hidden'
 
-        const itemHtml = document.createElement("div")
-        const itemName = document.createElement("p")
-        const itemIcon = document.createElement("i")
+        itmDesc.innerHTML = item.description
+        itmDesc.classList = 'item-description'
+        itemRar.innerHTML = item.rarity
+        itemRar.classList = 'item-rarity'
+        itmStuff.appendChild(itmDesc)
+        itmStuff.appendChild(itemRar)
 
-        itemName.innerHTML = item.name
-        itemIcon.className = `fa-solid ${itmico} item-icon`
-        itemName.classList = 'item-name'
-        itemHtml.classList = `inventory-item ${item.rarity}`
-        itemHtml.appendChild(itemIcon)
-        itemHtml.appendChild(itemName)
+        if(item.type === 'consumable'){
+            const consumebtn = document.createElement('button')
+            consumebtn.classList = `item-action-button consume-button`
+            consumebtn.addEventListener('click', () => equipItem(itm, 'consume'))
+            consumebtn.innerHTML = 'USE'
+            itmBtns.appendChild(consumebtn)
+        }
+        else{
+            const equipbtn = document.createElement('button')
+            equipbtn.addEventListener('click', () => equipItem(itm, 'equip'))
+            equipbtn.classList = `item-action-button equip-button`
+            equipbtn.innerHTML = 'Equip'
+            itmBtns.appendChild(equipbtn)
+        }
+        sellBtn.classList = 'item-action-button sell-button'
+        sellBtn.addEventListener('click', () => equipItem(itm, 'sell'))
+        sellBtn.innerHTML = `Sell (${Math.ceil(item.price/2)}G)`
+        itmBtns.appendChild(sellBtn)
 
-        inventory_container.appendChild(itemHtml)
+        itm.classList.add('inv-item')
+        itmName.classList.add('item-name')
+        itmIcon.classList = `fa-solid ${iconSelector(item.type)} item-icon`
+        itmName.innerHTML = item.name
+        itm.appendChild(itmIcon)
+        itm.appendChild(itmName)
+        itm.appendChild(itmStuff)
+        itm.appendChild(itmBtns)
+        itm.addEventListener('click', (e) => selectItem(e, itm, inv))
+        inv.appendChild(itm)
     });
 }
 
+function selectItem(e, itm, inv) {
+    if (e.target.closest('.item-action-button')) {
+        return; 
+    }
+    const itemStuff = itm.querySelector('.item-stuff')
+    const itemButtons = itm.querySelector('.item-buttons')
+    if(itm.classList.contains('selected-item')){
+        itm.classList.remove('selected-item')
+        itemStuff.classList.add('hidden')
+        itemButtons.classList.add('hidden')
+        return;
+    }
+    document.querySelectorAll('.selected-item').forEach(s_item => {
+        s_item.classList.remove('selected-item')
+        s_item.querySelector('.item-stuff').classList.add('hidden')
+        s_item.querySelector('.item-buttons').classList.add('hidden')
+    })
+
+    itm.classList.add('selected-item')
+    itemStuff.classList.remove('hidden')
+    itemButtons.classList.remove('hidden')
+    inv.prepend(itm)
+}
+
+function equipItem(){
+    
+}
+
+document.querySelector('.button-that-does-everything').addEventListener('click', () => updateStats(player, 3, 3, -3, [getRandomItem()]))

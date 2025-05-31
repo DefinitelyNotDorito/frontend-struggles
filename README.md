@@ -1,2 +1,3 @@
-Me when learning basic web development and failing horribly
-(please dont even bother trying on mobile)
+Why dont we rewrite everything?
+
+(still horrible code)

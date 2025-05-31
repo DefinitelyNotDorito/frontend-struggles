@@ -138,6 +138,8 @@ main {
   grid-column: 2;
   display: grid;
   grid-template-columns: 3fr 1fr;
+  height: 80vh;
+
 }
 
 .game-areas {
@@ -149,7 +151,6 @@ main {
 
 .game-area-middle {
   overflow: hidden;
-  min-height: 100%;
 }
 
 .game-area-right {
@@ -249,6 +250,37 @@ main {
   border-radius: 0.3rem;
 }
 
+/* hp-stuff */
+
+.hp-counter { width: 28rem; }
+
+.hp-progress-container {
+  height: 0.3em;
+  width: calc(100% - 1em);
+  background-color: #8f8f8f;
+  border-radius: 0.1rem;
+  position: relative;
+}
+
+.hp-progress {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  transition-duration: 1s;
+  background-color: #ff4646;
+  border-radius: 0.1rem;
+}
+
+.hp-count {
+  position: absolute;
+  font-size: 1.2em;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.603);
+  padding: 0.1em 0.4em;
+  border-radius: 0.3rem;
+}
+
+
 /* ---sidebar--- */
 
 .sidebar {
@@ -338,74 +370,73 @@ main {
 /* inventory */
 
 .inv {
-  display: grid;
-  grid-template-rows: 1fr 2fr;
-
   background-color: rgb(70, 20, 20);
   --primary-color: rgb(255, 65, 65);
   --primary-text: rgb(255, 255, 255);
   --content-background: #5e2020;
 }
 
-.inventory-selected, .inventory-container{
-  margin: 0.4em;
-  border-radius: 0.3rem;
-  background-color: var(--content-background);
-}
-
-.inventory-container{
+.inv-container{
+  position: relative;
+  padding: 5vh 0;
+  height: fit-content;
   display: grid;
-  grid-template-rows: 3em auto;
+  justify-content: center;
+  overflow-y: scroll;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 8rem));
+  grid-auto-rows: 8rem;
+  gap: 1em;
+  text-align: center;
 }
 
-.inventory-item-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
-    gap: 0.6em  ;
-    padding: 1em;
-    background: linear-gradient(135deg, #612727 0%, #4a1f1f 100%);
-    border-radius: 0.5rem;
-    border: 2px solid #8b3333;
-    max-height: 46vh;
-    overflow-y: scroll;
+.inv-item{
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  background-color: rgb(100, 37, 37);
+  box-shadow: var(--content-box-shadow);
+  user-select: none;
+  cursor: pointer;
+}
+.inv-item:hover{
+  transform: rotate(4deg);
 }
 
-.inventory-stuff{
+.selected-item{
+  aspect-ratio: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto auto;
+  width: 100%;
+  height: 100%;
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.item-stuff{
+  grid-column: 2;
+  grid-row: span 2;
+}
+
+.item-name{
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.item-buttons{
+  grid-row: 3;
+  grid-column: span 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1em;
 }
 
-.inventory-item{
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-  border: 2px solid transparent;
-
-  user-select: none;
-
-  aspect-ratio: 1;
-  height: 7em;
-  border-radius: 0.5rem;
-  background-color: var(--content-box-background);
-}
-
-.inventory-item:hover{
-  scale: 1.05;
-  border-color: white;
-}
-
-.item-name{
-  margin: 0;
-  color: var(--primary-text);
-  font-size: 0.9em;
-  overflow: scroll;
-}
-.item-icon{
-  font-size: 2.5rem;
+.inv-item.selected-item:hover {
+  transform: none;
 }
 
 /* adventure */
@@ -429,14 +460,40 @@ main {
   justify-content: center;
   height: 100%;
   transition-duration: 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 
 }
+
+.adventure-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.adventure-area:hover::before {
+  opacity: 1;
+}
+
+.adventure-area:hover {
+  transform: scale(1.02);
+  color: rgb(255, 255, 255);
+  h2{
+    width: 100%;
+    z-index: 3;
+  }
+}
+
 .plains{
   background: linear-gradient(0deg,rgba(194, 217, 95, 1) 0%, rgba(78, 143, 50, 1) 100%);
   color: rgb(252, 255, 203);
 }
 .forest{
-  background: linear-gradient(180deg,rgb(46, 54, 19) 0%, rgb(67, 88, 56) 100%);
+  background: linear-gradient(0deg,rgb(46, 54, 19) 0%, rgb(67, 88, 56) 100%);
   color: rgb(153, 177, 120);
 }
 .cave{
