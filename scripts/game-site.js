@@ -161,19 +161,19 @@ function updateInv(plyr){
         if(item.type === 'consumable'){
             const consumebtn = document.createElement('button')
             consumebtn.classList = `item-action-button consume-button`
-            consumebtn.addEventListener('click', () => equipItem(itm, 'consume'))
+            consumebtn.addEventListener('click', () => itemAction(plyr, item, 'use'))
             consumebtn.innerHTML = 'USE'
             itmBtns.appendChild(consumebtn)
         }
         else{
             const equipbtn = document.createElement('button')
-            equipbtn.addEventListener('click', () => equipItem(itm, 'equip'))
+            equipbtn.addEventListener('click', () => itemAction(plyr, item, 'equip'))
             equipbtn.classList = `item-action-button equip-button`
             equipbtn.innerHTML = 'Equip'
             itmBtns.appendChild(equipbtn)
         }
         sellBtn.classList = 'item-action-button sell-button'
-        sellBtn.addEventListener('click', () => equipItem(itm, 'sell'))
+        sellBtn.addEventListener('click', () => itemAction(plyr,item, 'sell'))
         sellBtn.innerHTML = `Sell (${Math.ceil(item.price/2)}G)`
         itmBtns.appendChild(sellBtn)
 
@@ -214,8 +214,25 @@ function selectItem(e, itm, inv) {
     inv.prepend(itm)
 }
 
-function equipItem(){
-    
+function itemAction(plyr, itm, action){
+    switch (action){
+        case 'use':
+            plyr.consumeItem(itm)
+            console.log(`used ${itm.name}`)
+            updateStats(plyr)
+            break;
+        case 'equip':
+            plyr.equipItem(itm)
+            console.log(`equipped ${itm.name}`)
+            updateStats(plyr)
+            break;
+        case 'sell':
+            plyr.money += (Math.ceil(itm.price / 2))
+            console.log(`sold ${itm.name}`)
+            plyr.removeItem(itm.id)
+            updateStats(plyr)
+            break;
+    }
 }
 
 document.querySelector('.button-that-does-everything').addEventListener('click', () => updateStats(player, 3, 3, -3, [getRandomItem()]))

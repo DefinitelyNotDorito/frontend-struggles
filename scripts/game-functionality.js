@@ -26,19 +26,28 @@ export class Player {
         this.inventory = this.inventory.filter(item => item.id !== itemID)
     }
     equipItem(item){
-        switch (item.type){
-            case 'weapon':
-                this.equipped.weapon = item
-                break
-            case 'armor':
-                this.equipped.armor = item
-                break
-            case 'shield':
-                this.equipped.shield = item
+        if(item.reqlvl <= this.level){
+            switch (item.type){
+                case 'weapon':
+                    this.equipped.weapon = item
+                    break
+                case 'armor':
+                    this.equipped.armor = item
+                    break
+                case 'shield':
+                    this.equipped.shield = item
+                    break
+            }
+        }
+        else{
+            alert("You're not high enough level!")
         }
     }
     consumeItem(item){
-        if (item.type === 'consumable'){
+        if (item.reqlvl > this.level){
+            alert("You're not high enough level!")
+        }
+        else{
             if (item.effect.hp){
                 this.hp = Math.min(this.maxhp, this.hp + item.effect.hp)
             }
@@ -48,6 +57,7 @@ export class Player {
             }
             this.removeItem(item.id)
         }
+
     }
 }
 export class Item {
