@@ -519,7 +519,9 @@ main {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-
+  h2{
+    z-index: 99;
+  }
 }
 
 .adventure-area::before {
@@ -540,7 +542,7 @@ main {
   color: rgb(255, 255, 255);
   h2{
     width: 100%;
-    z-index: 3;
+    z-index: 999;
   }
 }
 
@@ -562,11 +564,26 @@ main {
   color: rgb(106, 108, 219);
 }
 
+.adv-level-requirement{
+  position: absolute;
+  background-color: #3f3f3f50;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  color: #f0c654;
+  top: 80%;
+  z-index: 999;
+}
+
+/* shop stuff */
+
 .shop {
   background-color: rgb(28, 54, 61);
   --primary-color: #00a3c0;
   --primary-text: rgb(255, 255, 255);
 }
+
+/* stat stuff */
 
 .stat {
   background-color: rgb(66, 64, 50);
@@ -582,14 +599,31 @@ main {
   --primary-text: rgb(255, 255, 255);
 }
 
-.adv-level-requirement{
+.area-locked{
+  background: linear-gradient(0deg,rgba(38, 38, 38, 1) 0%, rgba(107, 107, 107, 1) 50%, rgba(38, 38, 38, 1) 100%);
+  color: rgb(255, 255, 255);
+  filter: brightness(1);
+}
+
+.area-locked::after{
   position: absolute;
-  background-color: #02020250;
-  padding: 0.4em;
-  border-radius: 0.5em;
-  font-weight: bold;
-  color: #f0c654;
-  top: 80%;
+  content: 'LOCKED';
+  width: 100%;
+  height: 100%;
+  padding-top: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bolder;
+  background-color: #000000;
+  color: rgb(255, 20, 20);
+  opacity: 0.6;
+}
+
+.area-locked:hover{
+  color: rgb(163, 163, 163);
+  scale: 1.05;
 }
 
 /* tab buttons */

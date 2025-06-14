@@ -59,12 +59,6 @@ class TabMgr{
         const levelRequired = this.adv_level_requirements[areaId]
 
         if(player.level < levelRequired){
-            const area = document.getElementById(`b-${areaId}`)
-
-            area.style.animation = 'redflash 0.5s'
-            setTimeout(() => {
-                area.style.animation = ''
-            }, 500)
             return
         }
         if(this.currentTab){
@@ -186,6 +180,15 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
 
     plyr.xp += xp
     plyr.levelup()
+    if(plyr.level >= 25){
+        document.querySelector('#b-mine').classList.remove('area-locked')
+    }
+    else if(plyr.level >= 10){
+        document.querySelector('#b-cave').classList.remove('area-locked')
+    }
+    else if(plyr.level >= 5){
+        document.querySelector('#b-forest').classList.remove('area-locked')
+    }
     level_counter.innerHTML = plyr.level
 
     xpw = plyr.xp / (plyr.level + 1) * 10
@@ -322,4 +325,4 @@ function itemAction(plyr, itm, action){
     }
 }
 
-document.querySelector('.button-that-does-everything').addEventListener('click', () => updateStats(player, 3, 3, -3, [getRandomItem()]))
+document.querySelector('.button-that-does-everything').addEventListener('click', () => updateStats(player, 10, 30, -3, [getRandomItem()]))
