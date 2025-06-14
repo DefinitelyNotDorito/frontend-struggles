@@ -71,17 +71,20 @@
                 </div>
                 <div class="game-tab hidden adv" id="adv">
                     <div class="adventure-areas">
-                        <div class="adventure-area plains">
+                        <div class="adventure-area plains" id="b-plains">
                             <h2>Pleasant Plains</h2>
                         </div>
-                        <div class="adventure-area forest">
+                        <div class="adventure-area forest" id="b-forest">
                             <h2>Fierce Forest</h2>
+                            <span class="adv-level-requirement">LVL 5+</span>
                         </div>
-                        <div class="adventure-area cave">
+                        <div class="adventure-area cave" id="b-cave">
                             <h2>Crimson Cavern</h2>
+                            <span class="adv-level-requirement">LVL 10+</span>
                         </div>
-                        <div class="adventure-area mine">
+                        <div class="adventure-area mine" id="b-mine">
                             <h2>Mysterious Mines</h2>
+                            <span class="adv-level-requirement">LVL 25+</span>
                         </div>
                     </div>
                 </div>
@@ -94,6 +97,10 @@
                 <div class="game-tab hidden skill" id="skill">
                     <button class="tab-button button-that-does-everything">button</button>
                 </div>
+                <div class="game-tab hidden plains" id="plains"></div>
+                <div class="game-tab hidden forest" id="forest"></div>
+                <div class="game-tab hidden cavern" id="cave"></div>
+                <div class="game-tab hidden mines" id="mine"></div>
             </div>
             <div class="game-areas game-area-right">
                 <div class="sidebar">
@@ -119,7 +126,28 @@
                     </h3>
                 </div>
                 <div class="small-tab-container">
-                    <div class="small-tab hidden small-tab-inv" id="small-tab-inv"></div>
+                    <div class="small-tab hidden small-tab-inv" id="small-tab-inv">
+                        <div class="equipped-items">
+                            <div class="row1">
+                                <div class="equipped-item equipped-armor">
+                                    <i class="fa-solid fa-shirt"></i>
+                                </div>
+                                <div class="equipped-item equipped-shield">
+                                    <i class="fa-solid fa-shield"></i>
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <div class="equipped-item equipped-weapon">
+                                    <i class="fa-solid fa-sword"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="equipped-stats">
+                            <span class="equipped-stat equipped-stat-damage"></span>
+                            <span class="equipped-stat equipped-stat-protection"></span>
+                            <span class="equipped-stat equipped-stat-armor"></span>
+                        </div>
+                    </div>
                     <div class="small-tab hidden small-tab-adv" id="small-tab-adv"></div>
                     <div class="small-tab hidden small-tab-shop" id="small-tab-shop"></div>
                 </div>

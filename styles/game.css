@@ -19,10 +19,13 @@
 }
 
 html, body {
-  height: 100vh;
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background-color: var(--main-background);
 }
 
 button { border: none; }
@@ -127,10 +130,8 @@ button { border: none; }
 /* ---layout--- */
 
 main {
-  height: 100%;
   display: grid;
   grid-template: max-content auto / 10% auto 10%;
-  background-color: var(--main-background);
 }
 
 .game-grid-outside {
@@ -138,7 +139,7 @@ main {
   grid-column: 2;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  height: 80vh;
+  min-height: 80vh;
 
 }
 
@@ -292,7 +293,7 @@ main {
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.sidebar-button {
+.sidebar > .sidebar-button {
   height: fit-content;
   max-width: 15%;
   width: 100%;
@@ -309,7 +310,7 @@ main {
   border-radius: 10em 0 0 10em;
 }
 
-.sidebar-button:hover { max-width: 75%; }
+.sidebar > .sidebar-button:hover { max-width: 75%; }
 
 .sidebar-label {
   opacity: 1;
@@ -359,6 +360,7 @@ main {
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
+  background-color: #fff;
 }
 
 .selected-tab { animation: fader 0.3s reverse; }
@@ -580,6 +582,16 @@ main {
   --primary-text: rgb(255, 255, 255);
 }
 
+.adv-level-requirement{
+  position: absolute;
+  background-color: #02020250;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  color: #f0c654;
+  top: 80%;
+}
+
 /* tab buttons */
 
 .tab-button {
@@ -603,17 +615,52 @@ main {
 /* ---small tabs--- */
 
 .small-tab-container{
+  display: flex;
   height: 100%;
   width: 100%;
   border-radius: 0 0 0.3rem 0.3rem;
   padding: 1em;
+  user-select: none;
 }
 
 .small-tab{
-  width: 100%;
-  height: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  flex-grow: 1;
   border-radius: 0.4rem;
+  height: 100%;
 }
+
+.equipped-items{
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.4em;
+}
+
+.row1, .row2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.6em;
+  gap: 1em;
+}
+
+.equipped-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  width: 5em;
+  border: #535353 dashed 3px;
+  border-radius: 0.3rem;
+  background-color: #00000036;
+  grid-column: span 2;
+  color: #777777;
+  i{
+    font-size: 1.8em;
+  }
+}
+
 
 .small-tab-selected{
   animation: fader 0.3s reverse;

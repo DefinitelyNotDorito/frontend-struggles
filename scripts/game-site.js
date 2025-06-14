@@ -5,14 +5,24 @@ class TabMgr{
     constructor(){
         this.currentTab = null
         this.tabs = new Map
+        this.areas = new Map
         this.smalltabs = new Map
         this.buttons = new Map
         this.init()
+
+        this.adv_level_requirements = {
+            'plains': 0,   
+            'forest': 5,   
+            'cave': 10,     
+            'mine': 25     
+        }
+
     }
     init(){
         const tabElements = document.querySelectorAll('.game-tab')
         const stabElements = document.querySelectorAll(".small-tab")
         const tabButtons = document.querySelectorAll('.sidebar-button')
+        const advAreaElements = document.querySelectorAll('.adventure-area')
 
         tabElements.forEach(tab => {
             this.tabs.set(tab.id, tab)
@@ -28,6 +38,11 @@ class TabMgr{
             tabbtn.addEventListener('mouseout', () => tabbtn.querySelector('.sidebar-label').classList.add('hidden-sidebar-label'))
         })
 
+        advAreaElements.forEach(area => {
+            const areaId = area.id.substring(2)
+            area.addEventListener('click', () => this.switchAdventure(areaId))
+        })
+
     }
     switchTab(tabId){
         if(this.currentTab === tabId){
@@ -39,6 +54,26 @@ class TabMgr{
         this.showTab(tabId)
         this.currentTab = tabId
         updateStats(player)
+    }
+    switchAdventure(areaId){
+        const levelRequired = this.adv_level_requirements[areaId]
+
+        if(player.level < levelRequired){
+            const area = document.getElementById(`b-${areaId}`)
+
+            area.style.animation = 'redflash 0.5s'
+            setTimeout(() => {
+                area.style.animation = ''
+            }, 500)
+            return
+        }
+        if(this.currentTab){
+            this.hideTab(this.currentTab)
+        }
+        this.showTab(areaId)
+        this.currentTab = areaId
+        updateStats(player)
+        return 
     }
     hideTab(tabId){
         const tab = this.tabs.get(tabId)
@@ -67,14 +102,15 @@ class TabMgr{
     }
 }
 
+
 const tabMgr = new TabMgr()
 console.log(tabMgr)
 const player = new Player()
 
 const b_buttons = document.querySelectorAll(".begin-button")
 const b_boxes = document.querySelectorAll(".begin-box")
-
 let bb_counter = 0
+
 let xpw = 0
 let hpw = 100
 
@@ -84,6 +120,7 @@ username_input.addEventListener("keyup", userCheck)
 b_buttons[bb_counter].addEventListener("click", bbToggle)
 
 function bbToggle(){
+    
     b_boxes[bb_counter].classList.add("fade-out")
     b_buttons[bb_counter].removeEventListener("click", bbToggle)
 
@@ -180,6 +217,12 @@ function updateStats(plyr, money = 0, xp = 0, hp = 0, itmArray = []){
 function updateInv(plyr){
     const inv = document.querySelector(".inv-container")
     inv.innerHTML = ''
+    const equippedKeys = Object.keys(plyr.equipped)
+    equippedKeys.forEach(eqkey => {
+        if(plyr.equipped[eqkey]){
+            
+        }
+    });
     plyr.inventory.forEach(item => {
         const itm = document.createElement("div")
         const itmName = document.createElement("h3")
@@ -199,6 +242,8 @@ function updateInv(plyr){
         itemRar.classList = 'item-rarity'
         itmStuff.appendChild(itmDesc)
         itmStuff.appendChild(itemRar)
+
+
 
         if(item.type === 'consumable'){
             const consumebtn = document.createElement('button')
